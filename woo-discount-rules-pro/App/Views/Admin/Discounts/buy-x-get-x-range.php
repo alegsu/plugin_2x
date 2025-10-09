@@ -50,6 +50,7 @@ if (!defined('ABSPATH')) {
                         <option value="free_product" <?php echo (isset($buyx_getx_adjustment->free_type) && $buyx_getx_adjustment->free_type == 'free_product') ? 'selected' : '';?>><?php esc_html_e('Free', 'woo-discount-rules-pro') ?></option>
                         <option value="percentage" <?php echo (isset($buyx_getx_adjustment->free_type) && $buyx_getx_adjustment->free_type == 'percentage') ? 'selected' : '';?>><?php esc_html_e('Percentage discount', 'woo-discount-rules-pro') ?></option>
                         <option value="flat" <?php echo (isset($buyx_getx_adjustment->free_type) && $buyx_getx_adjustment->free_type == 'flat') ? 'selected' : '';?>><?php esc_html_e('Fixed discount', 'woo-discount-rules-pro') ?></option>
+                        <option value="fixed_price" <?php echo (isset($buyx_getx_adjustment->free_type) && $buyx_getx_adjustment->free_type == 'fixed_price') ? 'selected' : '';?>><?php esc_html_e('Fixed price', 'woo-discount-rules-pro') ?></option>
                     </select>
                     <span class="wdr_desc_text"><?php esc_html_e('Discount type ', 'woo-discount-rules-pro'); ?></span>
                 </div>
