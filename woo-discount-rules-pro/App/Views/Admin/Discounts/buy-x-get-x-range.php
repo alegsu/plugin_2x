@@ -50,6 +50,7 @@ if (!defined('ABSPATH')) {
                         <option value="free_product" <?php echo (isset($buyx_getx_adjustment->free_type) && $buyx_getx_adjustment->free_type == 'free_product') ? 'selected' : '';?>><?php esc_html_e('Free', 'woo-discount-rules-pro') ?></option>
                         <option value="percentage" <?php echo (isset($buyx_getx_adjustment->free_type) && $buyx_getx_adjustment->free_type == 'percentage') ? 'selected' : '';?>><?php esc_html_e('Percentage discount', 'woo-discount-rules-pro') ?></option>
                         <option value="flat" <?php echo (isset($buyx_getx_adjustment->free_type) && $buyx_getx_adjustment->free_type == 'flat') ? 'selected' : '';?>><?php esc_html_e('Fixed discount', 'woo-discount-rules-pro') ?></option>
+                        <option value="fixed_price" <?php echo (isset($buyx_getx_adjustment->free_type) && $buyx_getx_adjustment->free_type == 'fixed_price') ? 'selected' : '';?>><?php esc_html_e('Fixed price', 'woo-discount-rules-pro') ?></option>
                     </select>
                     <span class="wdr_desc_text"><?php esc_html_e('Discount type ', 'woo-discount-rules-pro'); ?></span>
                 </div>
@@ -59,7 +60,19 @@ if (!defined('ABSPATH')) {
                            placeholder="<?php esc_attr_e('Value', 'woo-discount-rules-pro'); ?>" min="0" step="any"
                            value="<?php echo (isset($buyx_getx_adjustment->free_value) && !empty($buyx_getx_adjustment->free_value)) ? esc_attr($buyx_getx_adjustment->free_value) : '1';?>"
                     >
-                    <span class="wdr_desc_text"><?php echo (isset($buyx_getx_adjustment->free_type) && $buyx_getx_adjustment->free_type == 'flat') ? esc_html__('Discount value ', 'woo-discount-rules-pro') :  esc_html__('Discount percentage ', 'woo-discount-rules-pro'); ?></span>
+                    <span class="wdr_desc_text"><?php 
+                        if (isset($buyx_getx_adjustment->free_type)) {
+                            if ($buyx_getx_adjustment->free_type == 'flat') {
+                                echo esc_html__('Discount value ', 'woo-discount-rules-pro');
+                            } elseif ($buyx_getx_adjustment->free_type == 'fixed_price') {
+                                echo esc_html__('Fixed price', 'woo-discount-rules-pro');
+                            } else {
+                                echo esc_html__('Discount percentage ', 'woo-discount-rules-pro');
+                            }
+                        } else {
+                            echo esc_html__('Discount percentage ', 'woo-discount-rules-pro');
+                        }
+                    ?></span>
                 </div>
                 <div class="awdr-buyx-getx-recursive"><?php
                     $is_enabled_rtl =  \WDRPro\App\Helpers\CoreMethodCheck::isRTLEnable(); ?>

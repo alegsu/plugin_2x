@@ -848,6 +848,12 @@ class BuyXGetY
                     $discount_text = $value . '%';
                 }
                 break;
+            case 'fixed_price':
+                if (!empty($value)) {
+                    $fixed_price = CoreMethodCheck::getConvertedFixedPrice($value, 'fixed_price');
+                    $discount_text = Woocommerce::formatPrice($fixed_price);
+                }
+                break;
         }
         if (!empty($discount_text) ) {
             $dont_allow_duplicate = true;

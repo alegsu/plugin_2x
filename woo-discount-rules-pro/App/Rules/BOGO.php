@@ -622,6 +622,11 @@ class BOGO
                         $discount_value = self::getDiscountValueFromRule($matched_rule, $price);
                         $discount_price = self::getDiscountPriceForProductFromQuantityBasedFlatDiscount($product, $price, $quantity, $discount_value, $discount_quantity);
                     }
+                } else if($matched_rule->free_type == "fixed_price"){
+                    if($matched_rule->free_value > 0){
+                        $discount_value = self::getDiscountValueFromRule($matched_rule, $price);
+                        $discount_price = self::getDiscountPriceForProductFromQuantityBasedFlatDiscount($product, $price, $quantity, $discount_value, $discount_quantity);
+                    }
                 }
             }
 
@@ -655,6 +660,11 @@ class BOGO
                         if ($discount_value > $price) {
                             $discount_value = $price;
                         }
+                    }
+                } else if($matched_rule->free_type == "fixed_price"){
+                    if($matched_rule->free_value > 0){
+                        $fixed_price = CoreMethodCheck::getConvertedFixedPrice($matched_rule->free_value, 'fixed_price');
+                        $discount_value = max(0, $price - $fixed_price);
                     }
                 }
             }
