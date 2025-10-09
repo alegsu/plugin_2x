@@ -156,6 +156,11 @@ class Cheapest
                         $free_value = CoreMethodCheck::getConvertedFixedPrice($matched_rule->free_value, 'flat');
                         $discount_amount_per_product = $free_value;
                     }
+                } else if($matched_rule->free_type == "fixed_price"){
+                    if($matched_rule->free_value > 0){
+                        $fixed_price = CoreMethodCheck::getConvertedFixedPrice($matched_rule->free_value, 'fixed_price');
+                        $discount_amount_per_product = max(0, floatval($price) - $fixed_price);
+                    }
                 }
             }
 
